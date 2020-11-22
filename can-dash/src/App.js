@@ -1,7 +1,6 @@
 import React from 'react';
 import Student from './components/Student';
 import List from './components/List';
-import './App.css';
 
 class App extends React.Component {
   constructor(props) {
