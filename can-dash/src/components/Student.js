@@ -20,10 +20,10 @@ class Student extends React.Component {
         return (
             <div className="student">
                 <Grid container spacing={3}>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                         <Paper className='paper'>
                             <h2>{this.state.name}</h2> 
-                            <img src="https://via.placeholder.com/300" alt="Chart Placeholder" />
+                            <img src="https://via.placeholder.com/300" alt="Chart Placeholder" width="80%"/>
                             <p>
                                 Student ID: {this.state.id} <br />
                                 Grade:{this.state.grade} <br />
@@ -31,7 +31,7 @@ class Student extends React.Component {
                             </p>
                         </Paper>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                         <Paper className='paper'>
                             <h3>Scores</h3>
                             <ul>
@@ -41,6 +41,14 @@ class Student extends React.Component {
                             <h3>Can Do</h3>
                             <ul>
                                 <li>sexy time</li>
+                            </ul>
+                        </Paper>
+                    </Grid>
+                    <Grid xs={4}>
+                        <Paper>
+                            <h3>Recommendations</h3>
+                            <ul>
+                                <li>List</li>
                             </ul>
                         </Paper>
                     </Grid>
