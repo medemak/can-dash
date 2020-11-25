@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
 // Most of this code comes from 
 // https://blog.logrocket.com/getting-started-with-postgres-in-your-react-app/
@@ -10,7 +9,7 @@ const express = require('express')
 const app = express()
 const port = 3001
 
-const dash_model = require('./dash_model')
+const dash_model = require('./dash_model').default
 
 app.use(express.json)
 app.use((req, res, next) => {
