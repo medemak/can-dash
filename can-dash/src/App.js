@@ -1,6 +1,7 @@
 import React from 'react';
 import Student from './components/Student';
 import List from './components/List';
+import Test from './components/Test';
 
 class App extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class App extends React.Component {
     }
     return (
       <div className="App">
+      <Test />
       <header>
         <h1>CanDash</h1>
         <p>A dashboard that focuses on what students can do.</p>
