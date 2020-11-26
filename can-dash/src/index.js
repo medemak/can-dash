@@ -3,10 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-<<<<<<< HEAD
 // Most of this code comes from 
 // https://blog.logrocket.com/getting-started-with-postgres-in-your-react-app/
-const express = require('express')
+/*const express = require('express')
 const app = express()
 const port = 3001
 
@@ -54,9 +53,8 @@ app.delete('/students/:id',(req,res) => {
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
+*/
 
-=======
->>>>>>> parent of 229b26d... Erroring out on pg-native dependency...
 ReactDOM.render(
   <React.StrictMode>
     <App />
@@ -67,4 +65,4 @@ ReactDOM.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+//reportWebVitals();
