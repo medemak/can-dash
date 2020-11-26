@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
+<<<<<<< HEAD
 // Most of this code comes from 
 // https://blog.logrocket.com/getting-started-with-postgres-in-your-react-app/
 const express = require('express')
@@ -54,6 +55,8 @@ app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
 
+=======
+>>>>>>> parent of 229b26d... Erroring out on pg-native dependency...
 ReactDOM.render(
   <React.StrictMode>
     <App />

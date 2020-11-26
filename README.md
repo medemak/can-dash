@@ -13,4 +13,4 @@ similar to the WIDA Can-do Descriptors.
 It will also allow the teacher to customize the dashboard and export the data back to a CSV
 
 Technologies used:
-ReactJS, MaterialUI, Postgres, Express, Auth0
+ReactJS, MaterialUI, Auth0
