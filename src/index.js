@@ -5,6 +5,7 @@ import App from './App';
 
 // Most of this code comes from 
 // https://blog.logrocket.com/getting-started-with-postgres-in-your-react-app/
+/*
 const express = require('express')
 const app = express()
 const port = 3001
@@ -53,7 +54,7 @@ app.delete('/students/:id',(req,res) => {
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
-
+*/
 
 ReactDOM.render(
   <React.StrictMode>
