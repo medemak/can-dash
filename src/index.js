@@ -11,7 +11,7 @@ const port = 3001
 
 const dash_model = require('./dash_model').default
 
-app.use(express.json)
+app.use(express.json())
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
@@ -25,12 +25,12 @@ app.get('/', (req, res) => {
   .then(response => {
     res.status(200).send(response);
   })
-})
 .catch(error => {
   res.status(500).send(error);
+  })
 })
 
-apps.post('/students',(req, res) => {
+app.post('/students',(req, res) => {
   dash_model.createStudent(req.body)
   .then(response => {
     res.status(200).send(response);
