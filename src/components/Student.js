@@ -23,6 +23,7 @@ class Student extends React.Component {
     }
 
     maxScores = {
+        // maximum scores for each test
         score1:500,
         score2:500,
         score3:2000,
@@ -31,7 +32,7 @@ class Student extends React.Component {
     }  
 
     scores = {
-            // columns
+            // actual student scores
             score1: 350,
             score2: 340,
             score3: 798,

@@ -6,6 +6,10 @@ import App from './App';
 // Most of this code comes from 
 // https://blog.logrocket.com/getting-started-with-postgres-in-your-react-app/
 /*
+
+Check out this github for the completed project: 
+https://github.com/nsebhastian/react-node-postgres
+
 const express = require('express')
 const app = express()
 const port = 3001
