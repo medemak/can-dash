@@ -22,3 +22,7 @@ body {
   background:#fff;
   padding:1em;
 }
+
+.student svg {
+  width:100% !important;
+}

@@ -1,12 +1,13 @@
 import React from 'react';
 import Student from './components/Student';
 import List from './components/List';
+import StudentGet from './components/StudentGet'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      view: 'list'
+      view: 'db'
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -18,6 +19,9 @@ class App extends React.Component {
   render() {
     let toShow;
     switch(this.state.view) {
+      case 'db':
+        toShow = <StudentGet />
+        break
       case 'list':
         toShow = <List />
         break
@@ -31,6 +35,7 @@ class App extends React.Component {
         <h1>CanDash</h1>
         <p>A dashboard that focuses on what students can do.</p>
         <nav>
+        <button name="db" onClick={this.handleClick}>Database</button>
           <button name="list" onClick={this.handleClick} >List</button>
           <button name="student" onClick={this.handleClick}>Student</button>
         </nav>
