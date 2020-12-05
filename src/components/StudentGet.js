@@ -8,7 +8,7 @@ function StudentGet() {
   }, []);
 
   function getStudent() {
-    fetch('http://localhost:3001')
+    fetch(`http://localhost:3001`)
       .then(response => {
         return response.text();
       })
