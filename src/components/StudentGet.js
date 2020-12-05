@@ -52,9 +52,23 @@ function StudentGet() {
       });
   }
 
+  function showStudents() {
+    let html;
+    const studentArray = JSON.parse(students)
+    studentArray.forEach(student => {
+      html += student["name"]
+      html += student["email"]
+      html += "<br />"
+    });
+    return html
+  }
+  
+
   return (
     <div>
-      {students ? students : 'There is no student data available'}
+      {
+      students ? showStudents() : 'There is no student data available'
+      }
       <br />
       <button onClick={createStudent}>Add</button>
       <br />

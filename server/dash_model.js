@@ -10,7 +10,7 @@ const pool = new Pool({
 
 const getStudents = () => {
   return new Promise(function(resolve, reject) {
-    pool.query('SELECT * FROM Student ORDER BY id ASC', (error, results) => {
+    pool.query('SELECT * FROM student ORDER BY id ASC', (error, results) => {
       if (error) {
         reject(error)
       }
@@ -23,7 +23,7 @@ const createStudent = (body) => {
   return new Promise(function(resolve, reject) {
     const { name, email } = body
 
-    pool.query('INSERT INTO Student (name, email) VALUES ($1, $2) RETURNING *', [name, email], (error, results) => {
+    pool.query('INSERT INTO student (name, email) VALUES ($1, $2) RETURNING *', [name, email], (error, results) => {
       if (error) {
         reject(error)
       }
@@ -36,7 +36,7 @@ const deleteStudent = (StudentId) => {
   return new Promise(function(resolve, reject) {
     const id = parseInt(StudentId)
 
-    pool.query('DELETE FROM Student WHERE id = $1', [id], (error, results) => {
+    pool.query('DELETE FROM student WHERE id = $1', [id], (error, results) => {
       if (error) {
         reject(error)
       }
