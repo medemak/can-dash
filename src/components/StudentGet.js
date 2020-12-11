@@ -53,28 +53,60 @@ function StudentGet() {
   }
 
   function showStudents() {
-    let html;
-    const studentArray = JSON.parse(students)
-    studentArray.forEach(student => {
-      html += student["name"]
-      html += student["email"]
-      html += "<br />"
-    });
-    return html
+    return JSON.parse(students)
   }
-  
 
-  return (
+  let studentsNice = showStudents()
+    let i = 0
+    
+  function makeTable() {
+
+    <tbody>
+        <tr>
+                <td>{studentsNice[i].studentid}</td>
+                <td>{studentsNice[i].firstname}</td>
+                <td>{studentsNice[i].lastname}</td>
+                <td>{studentsNice[i].score1}</td>
+                <td>{studentsNice[i].score2}</td>
+                <td>{studentsNice[i].score3}</td>
+                <td>{studentsNice[i].score4}</td>
+                <td>{studentsNice[i].score5}</td>
+        </tr>   
+      </tbody>
+    }
+
+
+
+  console.log(studentsNice)
+  return ( 
+         <table>
+           <thead>
+             <tr>
+               <th>Student ID</th>
+               <th>First Name</th>
+               <th>Last Name</th>
+               <th>Score 1</th>
+               <th>Score 2</th>
+               <th>Score 3</th>
+               <th>Score 4</th>
+               <th>Score 5</th>
+             </tr>
+           </thead>
+            {students ? makeTable() : 'Nothing to display here.'}
+         </table>
+   
+  
+    /*
     <div>
       {
-      students ? showStudents() : 'There is no student data available'
+      students ? students : 'There is no student data available'
       }
       <br />
       <button onClick={createStudent}>Add</button>
       <br />
       <button onClick={deleteStudent}>Delete</button>
-    </div>
-  );
+    </div>*/
+  ); 
 }
 
 export default StudentGet;
