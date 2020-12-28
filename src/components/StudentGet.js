@@ -57,23 +57,31 @@ function StudentGet() {
   }
 
   let studentsNice = showStudents()
-    let i = 0
+
     
   function makeTable() {
-
-    <tbody>
+    let JSX = studentsNice.map(function(f) { 
+      return (
         <tr>
-                <td>{studentsNice[i].studentid}</td>
-                <td>{studentsNice[i].firstname}</td>
-                <td>{studentsNice[i].lastname}</td>
-                <td>{studentsNice[i].score1}</td>
-                <td>{studentsNice[i].score2}</td>
-                <td>{studentsNice[i].score3}</td>
-                <td>{studentsNice[i].score4}</td>
-                <td>{studentsNice[i].score5}</td>
+          <td>{f["studentid"]}</td>
+          <td>{f["firstname"]}</td>
+          <td>{f["lastname"]}</td>
+          <td>{f["score1"]}</td>
+          <td>{f["score2"]}</td>
+          <td>{f["score3"]}</td>
+          <td>{f["score4"]}</td>
+          <td>{f["score5"]}</td>
         </tr>   
+      )
+    });
+    return (
+      <tbody>
+        {JSX}
       </tbody>
+    )
     }
+
+
 
 
 
@@ -92,7 +100,7 @@ function StudentGet() {
                <th>Score 5</th>
              </tr>
            </thead>
-            {students ? makeTable() : 'Nothing to display here.'}
+            {students ? makeTable() : <tbody><tr><td>Nothing to display</td></tr></tbody>}
          </table>
    
   
