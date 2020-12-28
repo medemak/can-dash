@@ -1,6 +1,5 @@
 import React from 'react';
 import Student from './components/Student';
-import List from './components/List';
 import StudentGet from './components/StudentGet'
 
 class App extends React.Component {
@@ -22,9 +21,6 @@ class App extends React.Component {
       case 'db':
         toShow = <StudentGet />
         break
-      case 'list':
-        toShow = <List />
-        break
       default:
         toShow = <Student />
         break
@@ -35,8 +31,7 @@ class App extends React.Component {
         <h1>CanDash</h1>
         <p>A dashboard that focuses on what students can do.</p>
         <nav>
-        <button name="db" onClick={this.handleClick}>Database</button>
-          <button name="list" onClick={this.handleClick} >List</button>
+          <button name="db" onClick={this.handleClick}>Database</button>
           <button name="student" onClick={this.handleClick}>Student</button>
         </nav>
       </header>

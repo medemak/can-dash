@@ -67,10 +67,23 @@ function StudentGet() {
     
   }
 
+  const handleCellClick = (e) =>  {
+    alert("Clicked!")
+  }
+
   let studentsNice = JSON.parse(students)
   return ( 
-         <div style={{height:600, width:'100%'}}>
-           {students ? <DataGrid rows={studentsNice} columns={columns} /> : <p>No data found</p>}
+         <div style={{ height:'1000px', width:'100%'}}>
+           {students ? 
+           <DataGrid 
+           rows={studentsNice} 
+           columns={columns} 
+           autoHeight={true}
+           checkboxSelection={true}
+           onCellClick={(e) => handleCellClick(e)}
+           disableSelectionOnClick= {true}
+           />
+            : <p>No data found</p>}
          </div>
   ); 
 }
