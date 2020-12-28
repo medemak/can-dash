@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { DataGrid } from '@material-ui/data-grid';
 
 function StudentGet() {
   const [students, setStudents] = useState(false);
@@ -6,6 +7,17 @@ function StudentGet() {
   useEffect(() => {
     getStudent();
   }, []);
+
+  const columns = [
+    {field:'studentid', headerName:'Student ID'},
+    {field:'firstname', headerName:'First Name'},
+    {field:'lastname', headerName:'Last Name'},
+    {field:'score1', headerName:'Score 1'},
+    {field:'score2', headerName:'Score 2'},
+    {field:'score3', headerName:'Score 3'},
+    {field:'score4', headerName:'Score 4'},
+    {field:'score5', headerName:'Score 5'}
+  ]
 
   function getStudent() {
     fetch('http://localhost:3001')
@@ -37,83 +49,29 @@ function StudentGet() {
       });
   }
 
-  function deleteStudent() {
-    let id = prompt('Enter student id');
-
-    fetch(`http://localhost:3001/students/${id}`, {
-      method: 'DELETE',
-    })
-      .then(response => {
-        return response.text();
+  function deleteStudent(id) {
+    // eslint-disable-next-line no-restricted-globals
+    let del = confirm("Are you sure you want to delete?")
+    if (del) {
+      fetch(`http://localhost:3001/students/${id}`, {
+        method: 'DELETE',
       })
-      .then(data => {
-        alert(data);
-        getStudent();
-      });
-  }
-
-  function showStudents() {
-    return JSON.parse(students)
-  }
-
-  let studentsNice = showStudents()
-
-    
-  function makeTable() {
-    let JSX = studentsNice.map(function(f) { 
-      return (
-        <tr>
-          <td>{f["studentid"]}</td>
-          <td>{f["firstname"]}</td>
-          <td>{f["lastname"]}</td>
-          <td>{f["score1"]}</td>
-          <td>{f["score2"]}</td>
-          <td>{f["score3"]}</td>
-          <td>{f["score4"]}</td>
-          <td>{f["score5"]}</td>
-        </tr>   
-      )
-    });
-    return (
-      <tbody>
-        {JSX}
-      </tbody>
-    )
+        .then(response => {
+          return response.text();
+        })
+        .then(data => {
+          alert(data);
+          getStudent();
+        });
     }
+    
+  }
 
-
-
-
-
-  console.log(studentsNice)
+  let studentsNice = JSON.parse(students)
   return ( 
-         <table>
-           <thead>
-             <tr>
-               <th>Student ID</th>
-               <th>First Name</th>
-               <th>Last Name</th>
-               <th>Score 1</th>
-               <th>Score 2</th>
-               <th>Score 3</th>
-               <th>Score 4</th>
-               <th>Score 5</th>
-             </tr>
-           </thead>
-            {students ? makeTable() : <tbody><tr><td>Nothing to display</td></tr></tbody>}
-         </table>
-   
-  
-    /*
-    <div>
-      {
-      students ? students : 'There is no student data available'
-      }
-      <br />
-      <button onClick={createStudent}>Add</button>
-      <br />
-      <button onClick={deleteStudent}>Delete</button>
-    </div>*/
+         <div style={{height:600, width:'100%'}}>
+           {students ? <DataGrid rows={studentsNice} columns={columns} /> : <p>No data found</p>}
+         </div>
   ); 
 }
 
