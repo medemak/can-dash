@@ -6,8 +6,8 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      studentid:1,
       view: 'db',
-      studentid:0,
       students:[]
     }
     this.handleClick = this.handleClick.bind(this)
@@ -34,7 +34,7 @@ class App extends React.Component {
         toShow = <StudentGet clickstudent={this.handleClick} parentCallback={this.getStudents}/>
         break
       default:
-        toShow = <Student students={this.state.students} studentid={this.state.studentid} clicklist={this.handleClick}/>
+        toShow = <Student students={this.state.students} studentid={this.state.view.studentid} clicklist={this.handleClick}/>
         break
     }
     return (

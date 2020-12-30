@@ -14,15 +14,10 @@ class Student extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id:this.props.studentid,
-            name:'Harry Potter',
-            grade:9,
-            period:2,
-            canDashScore:3
         };    
     }
 
-    student = this.props.students[0]
+    student = this.props.students[this.props.studentid]
 
     maxScores = {
         // maximum scores for each test
