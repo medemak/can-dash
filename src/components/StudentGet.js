@@ -103,7 +103,7 @@ getStudent() {
            columns={this.columns} 
            autoHeight={true}
            checkboxSelection={true}
-           onRowClick={(e) => this.handleCellClick('student', 1/* undefined: e.currentTarget.dataset.rowindex */)}
+           onRowClick={(e) => this.handleCellClick(e, 1/* undefined: e.currentTarget.dataset.rowindex */)}
            disableSelectionOnClick= {true}
            />
             : <p>No data found</p>}

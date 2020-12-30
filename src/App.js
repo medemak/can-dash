@@ -14,7 +14,8 @@ class App extends React.Component {
     this.getStudents = this.getStudents.bind(this)
   }
   handleClick(e, i) {
-    this.setState((view=e.target.name) => {
+    let view = this.state.viewShow === 'db' ? 'student' : 'db'
+    this.setState(() => {
       return {
         viewShow:view,
         studentid:i

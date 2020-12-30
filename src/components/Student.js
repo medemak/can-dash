@@ -66,7 +66,7 @@ class Student extends React.Component {
         return (
             <div className="student">
                 <nav>
-                    <button name="db" onClick={(e) => this.props.clicklist(e)}>Return to list</button>
+                    <button name="db" onClick={(e) => this.props.clicklist(e,0,'db')}>Return to list</button>
                 </nav>
                 <Grid container spacing={3}>
                     <Grid item xs={4}>
