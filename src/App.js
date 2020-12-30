@@ -6,23 +6,27 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      view: 'db'
+      view: 'db',
+      studentid:0
     }
     this.handleClick = this.handleClick.bind(this)
   }
-  handleClick(e) {
-    this.setState((state, props) => {
-      return {view:e.target.name};
+  handleClick(e, studentid) {
+    this.setState((view=e.target.name) => {
+      return {
+        view:view,
+        studentid:studentid
+      };
     });
   }
   render() {
     let toShow;
     switch(this.state.view) {
       case 'db':
-        toShow = <StudentGet />
+        toShow = <StudentGet clickstudent={this.handleClick}/>
         break
       default:
-        toShow = <Student />
+        toShow = <Student studentid={this.props.studentid } clicklist={this.handleClick}/>
         break
     }
     return (
@@ -30,10 +34,6 @@ class App extends React.Component {
       <header>
         <h1>CanDash</h1>
         <p>A dashboard that focuses on what students can do.</p>
-        <nav>
-          <button name="db" onClick={this.handleClick}>Database</button>
-          <button name="student" onClick={this.handleClick}>Student</button>
-        </nav>
       </header>
       <main>
         {toShow}

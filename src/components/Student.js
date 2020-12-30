@@ -78,6 +78,9 @@ class Student extends React.Component {
     render() {
         return (
             <div className="student">
+                <nav>
+                    <button name="db" onClick={this.props.clicklist}>Return to list</button>
+                </nav>
                 <Grid container spacing={3}>
                     <Grid item xs={4}>
                         <Paper className='paper'>
