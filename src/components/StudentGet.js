@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataGrid } from '@material-ui/data-grid';
+import { DataGrid} from '@material-ui/data-grid';
 
 class StudentGet extends React.Component {
   constructor(props) {
@@ -102,7 +102,7 @@ getStudent() {
            columns={this.columns} 
            autoHeight={true}
            checkboxSelection={true}
-           onCellClick={(e) => this.state.handleCellClick('student')}
+           onCellClick={(e) => this.state.handleCellClick('student',1)}
            disableSelectionOnClick= {true}
            />
             : <p>No data found</p>}

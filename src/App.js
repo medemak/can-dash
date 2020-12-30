@@ -6,18 +6,18 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      studentid:1,
-      view: 'db',
+      studentid:0,
+      viewShow: 'db',
       students:[]
     }
     this.handleClick = this.handleClick.bind(this)
     this.getStudents = this.getStudents.bind(this)
   }
-  handleClick(e, studentid) {
+  handleClick(e, i) {
     this.setState((view=e.target.name) => {
       return {
-        view:view,
-        studentid:studentid
+        viewShow:view,
+        studentid:i
       };
     });
   }
@@ -29,12 +29,12 @@ class App extends React.Component {
   }
   render() {
     let toShow;
-    switch(this.state.view) {
+    switch(this.state.viewShow) {
       case 'db':
         toShow = <StudentGet clickstudent={this.handleClick} parentCallback={this.getStudents}/>
         break
       default:
-        toShow = <Student students={this.state.students} studentid={this.state.view.studentid} clicklist={this.handleClick}/>
+        toShow = <Student students={this.state.students} studentid={this.state.studentid} clicklist={this.handleClick}/>
         break
     }
     return (
