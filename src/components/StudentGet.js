@@ -10,6 +10,7 @@ class StudentGet extends React.Component {
       handleCellClick:this.props.clickstudent
     }
     this.parentCallback = this.props.parentCallback.bind(this)
+    this.handleCellClick = this.props.clickstudent.bind(this)
   }
 
   componentDidMount() {
@@ -102,7 +103,7 @@ getStudent() {
            columns={this.columns} 
            autoHeight={true}
            checkboxSelection={true}
-           onCellClick={(e) => this.state.handleCellClick('student',1)}
+           onRowClick={(e) => this.handleCellClick('student', 1/* undefined: e.currentTarget.dataset.rowindex */)}
            disableSelectionOnClick= {true}
            />
             : <p>No data found</p>}
