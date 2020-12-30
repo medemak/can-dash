@@ -9,6 +9,7 @@ class StudentGet extends React.Component {
       students:[],
       handleCellClick:this.props.clickstudent
     }
+    this.parentCallback = this.props.parentCallback.bind(this)
   }
 
   componentDidMount() {
@@ -37,9 +38,10 @@ getStudent() {
       })
       .then(data => {
         if (this._isMounted) {this.setState({students:data})}
-        this.studentsNice = this.state.students.length !== 0 ? JSON.parse(this.state.students) : []
+        this.studentsNice = this.state.students.length !== 0 ? JSON.parse(this.state.students) : [] 
         this.canDash(this.studentsNice)
-      });
+        this.props.parentCallback(this.studentsNice);
+      }); 
   }
 
  createStudent() {

@@ -7,9 +7,11 @@ class App extends React.Component {
     super(props)
     this.state = {
       view: 'db',
-      studentid:0
+      studentid:0,
+      students:[]
     }
     this.handleClick = this.handleClick.bind(this)
+    this.getStudents = this.getStudents.bind(this)
   }
   handleClick(e, studentid) {
     this.setState((view=e.target.name) => {
@@ -19,14 +21,20 @@ class App extends React.Component {
       };
     });
   }
+  getStudents(childData) {
+    this.setState({students:childData})
+  }
+  componentDidMount() {
+    this.getStudents()
+  }
   render() {
     let toShow;
     switch(this.state.view) {
       case 'db':
-        toShow = <StudentGet clickstudent={this.handleClick}/>
+        toShow = <StudentGet clickstudent={this.handleClick} parentCallback={this.getStudents}/>
         break
       default:
-        toShow = <Student studentid={this.props.studentid } clicklist={this.handleClick}/>
+        toShow = <Student students={this.state.students} studentid={this.state.studentid} clicklist={this.handleClick}/>
         break
     }
     return (
