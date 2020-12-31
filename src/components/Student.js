@@ -23,11 +23,11 @@ class Student extends React.Component {
 
     maxScores = {
         // maximum scores for each test
-        score1:500,
-        score2:10,
-        score3:1600,
-        score4:35,
-        score5:1
+        score1:this.scores[0]["max"],
+        score2:this.scores[1]["max"],
+        score3:this.scores[2]["max"],
+        score4:this.scores[3]["max"],
+        score5:this.scores[4]["max"]
     }  
 
     data = [
@@ -47,11 +47,11 @@ class Student extends React.Component {
 
     captions = {
         // columns
-        score1: 'FSA-R',
-        score2: 'FSA-W',
-        score3: 'SAT',
-        score4: 'ACT',
-        score5: 'N/A'
+        score1: this.scores[0]["name"],
+        score2: this.scores[1]["name"],
+        score3: this.scores[2]["name"],
+        score4: this.scores[3]["name"],
+        score5: this.scores[4]["name"]
       };
 
     options = {

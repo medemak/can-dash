@@ -22,11 +22,11 @@ columns = [
     {field:'studentid', headerName:'Student ID', width:120},
     {field:'firstname', headerName:'First Name', width:200},
     {field:'lastname', headerName:'Last Name', width:200},
-    {field:'score1', headerName:'Score 1', width:100},
-    {field:'score2', headerName:'Score 2', width:100},
-    {field:'score3', headerName:'Score 3', width:100},
-    {field:'score4', headerName:'Score 4', width:100},
-    {field:'score5', headerName:'Score 5', width:100},
+    {field:'score1', headerName:this.props.scores[0]["name"], width:100},
+    {field:'score2', headerName:this.props.scores[1]["name"], width:100},
+    {field:'score3', headerName:this.props.scores[2]["name"], width:100},
+    {field:'score4', headerName:this.props.scores[3]["name"], width:100},
+    {field:'score5', hide:true, headerName:this.props.scores[4]["name"], width:100},
     {field:'candash', headerName:'CanDash',width:100}
   ]
 
@@ -85,7 +85,15 @@ getStudent() {
 
   canDash(studentsNice) {
     for(var i=0; i<studentsNice.length; i++) {
-      studentsNice[i].candash = 3
+      let student = studentsNice[i]
+      let averages = [
+        student["score1"] / this.props.scores[0]["max"],
+        student["score2"] / this.props.scores[1]["max"],
+        student["score3"] / this.props.scores[2]["max"],
+        student["score4"] / this.props.scores[3]["max"],
+        student["score5"] / this.props.scores[4]["max"]
+      ]    
+      student.candash = (Math.max(...averages) * 10).toFixed(1)
     }
   }
   

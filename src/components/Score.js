@@ -10,7 +10,7 @@ class Score extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            parentCallback: this.props.parentCallback()
+            parentCallback: this.props.parentCallback
         }
     }
     scores = []
@@ -20,18 +20,17 @@ class Score extends React.Component {
             return response.text();
           })
           .then(data => {
-            this.scores = data
-            this.state.parentCallback(data)
+            this.scores = JSON.parse(data)
+            this.state.parentCallback(this.scores)
           }); 
       }
 
       componentDidMount() {
         this.getScores()
-        console.log(this.scores)
       }
       
       render() {
-          return this.scores.length > 0 ? [JSON.parse(this.scores)] : []
+        return null
       }
     
 }
