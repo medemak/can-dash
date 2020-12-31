@@ -3,6 +3,9 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
+import CanDo from '../components/CanDo.js'
+import Reco from '../components/Reco.js'
+
 // Radar Chart example
 // https://www.npmjs.com/package/react-svg-radar-chart
 import RadarChart from 'react-svg-radar-chart';
@@ -100,17 +103,13 @@ class Student extends React.Component {
                             </ul>
 
                             <h3>Can Do</h3>
-                            <ul>
-                                <li>write name</li>
-                            </ul>
+                            <CanDo candash = {this.student["candash"]} />
                         </Paper>
                     </Grid>
                     <Grid item xs={4}>
                         <Paper className="paper">
                             <h3>Recommendations</h3>
-                            <ul>
-                                <li>List</li>
-                            </ul>
+                            <Reco candash={this.student["candash"]} />
                         </Paper>
                     </Grid>
                 </Grid>
