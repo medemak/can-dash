@@ -19,6 +19,17 @@ const getStudents = () => {
   }) 
 }
 
+const getScores = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query('SELECT * FROM score ORDER BY id ASC', (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+    })
+  }) 
+}
+
 const createStudent = (body) => {
   return new Promise(function(resolve, reject) {
     const { name, email } = body
@@ -49,4 +60,5 @@ module.exports = {
   getStudents,
   createStudent,
   deleteStudent,
+  getScores
 }

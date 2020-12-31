@@ -83,8 +83,6 @@ getStudent() {
     
   }
 
-  
-
   canDash(studentsNice) {
     for(var i=0; i<studentsNice.length; i++) {
       studentsNice[i].candash = 3
@@ -92,12 +90,11 @@ getStudent() {
   }
   
   render() {
-        this.getStudent()
         return ( 
          <div style={{ height:'1000px', width:'100%'}}>
            <button onClick={this.deleteStudent}>Delete</button>
            <button onClick={this.createStudent}>Add</button>
-           {this.studentsNice.length !== 0 ? 
+           {this.studentsNice.length > 0 ? 
            <DataGrid 
            rows={this.studentsNice} 
            columns={this.columns} 

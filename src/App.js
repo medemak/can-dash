@@ -1,6 +1,8 @@
 import React from 'react';
 import Student from './components/Student';
 import StudentGet from './components/StudentGet'
+import Score from './components/Score'
+
 
 class App extends React.Component {
   constructor(props) {
@@ -8,11 +10,14 @@ class App extends React.Component {
     this.state = {
       studentid:0,
       viewShow: 'db',
-      students:[]
+      students:[],
+      scores:[]
     }
     this.handleClick = this.handleClick.bind(this)
     this.getStudents = this.getStudents.bind(this)
+    this.getScores = this.getScores.bind(this);
   }
+
   handleClick(e, i) {
     let view = this.state.viewShow === 'db' ? 'student' : 'db'
     this.setState(() => {
@@ -25,17 +30,21 @@ class App extends React.Component {
   getStudents(childData) {
     this.setState({students:childData})
   }
+  getScores(childData) {
+    this.setState({scores:childData})
+  }
   componentDidMount() {
     this.getStudents()
   }
   render() {
     let toShow;
+    <Score parentCallback={this.getScores} />
     switch(this.state.viewShow) {
       case 'db':
-        toShow = <StudentGet clickstudent={this.handleClick} parentCallback={this.getStudents}/>
+        toShow = <StudentGet scores={this.scores} clickstudent={this.handleClick} parentCallback={this.getStudents}/>
         break
       default:
-        toShow = <Student students={this.state.students} studentid={this.state.studentid} clicklist={this.handleClick}/>
+        toShow = <Student scores={this.scores} students={this.state.students} studentid={this.state.studentid} clicklist={this.handleClick}/>
         break
     }
     return (
@@ -45,6 +54,7 @@ class App extends React.Component {
         <p>A dashboard that focuses on what students can do.</p>
       </header>
       <main>
+        <h1>{this.state.scores}</h1>
         {toShow}
       </main>
       <footer>

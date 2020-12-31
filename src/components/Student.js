@@ -18,6 +18,8 @@ class Student extends React.Component {
     }
 
     student = this.props.students[this.props.studentid]
+    scores = this.props.scores
+    
 
     maxScores = {
         // maximum scores for each test
@@ -68,6 +70,7 @@ class Student extends React.Component {
                 <nav>
                     <button name="db" onClick={(e) => this.props.clicklist(e,0,'db')}>Return to list</button>
                 </nav>
+                <br />
                 <Grid container spacing={3}>
                     <Grid item xs={4}>
                         <Paper className='paper'>
