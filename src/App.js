@@ -1,32 +1,50 @@
 import React from 'react';
 import Student from './components/Student';
-import List from './components/List';
 import StudentGet from './components/StudentGet'
+import Score from './components/Score'
+
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      view: 'db'
+      studentid:0,
+      viewShow: 'db',
+      students:[],
+      scores:[]
     }
     this.handleClick = this.handleClick.bind(this)
+    this.getStudents = this.getStudents.bind(this)
+    this.getScores = this.getScores.bind(this);
   }
-  handleClick(e) {
-    this.setState((state, props) => {
-      return {view:e.target.name};
+
+  handleClick(e, i) {
+    let view = this.state.viewShow === 'db' ? 'student' : 'db'
+    this.setState(() => {
+      return {
+        viewShow:view,
+        studentid:i
+      };
     });
+  }
+  getStudents(childData) {
+    this.setState({students:childData})
+  }
+  getScores(childData) {
+    this.setState({scores:childData})
+  }
+  componentDidMount() {
+    this.getStudents()
   }
   render() {
     let toShow;
-    switch(this.state.view) {
+    <Score parentCallback={this.getScores} />
+    switch(this.state.viewShow) {
       case 'db':
-        toShow = <StudentGet />
-        break
-      case 'list':
-        toShow = <List />
+        toShow = <StudentGet scores={this.scores} clickstudent={this.handleClick} parentCallback={this.getStudents}/>
         break
       default:
-        toShow = <Student />
+        toShow = <Student scores={this.scores} students={this.state.students} studentid={this.state.studentid} clicklist={this.handleClick}/>
         break
     }
     return (
@@ -34,13 +52,9 @@ class App extends React.Component {
       <header>
         <h1>CanDash</h1>
         <p>A dashboard that focuses on what students can do.</p>
-        <nav>
-        <button name="db" onClick={this.handleClick}>Database</button>
-          <button name="list" onClick={this.handleClick} >List</button>
-          <button name="student" onClick={this.handleClick}>Student</button>
-        </nav>
       </header>
       <main>
+        <h1>{this.state.scores}</h1>
         {toShow}
       </main>
       <footer>

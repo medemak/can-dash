@@ -1,23 +1,51 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+import { DataGrid} from '@material-ui/data-grid';
 
-function StudentGet() {
-  const [students, setStudents] = useState(false);
+class StudentGet extends React.Component {
+  constructor(props) {
+    super(props) 
+    this._isMounted = false;   
+    this.state = {
+      students:[],
+      handleCellClick:this.props.clickstudent
+    }
+    this.parentCallback = this.props.parentCallback.bind(this)
+    this.handleCellClick = this.props.clickstudent.bind(this)
+  }
 
-  useEffect(() => {
-    getStudent();
-  }, []);
+  componentDidMount() {
+    this.getStudent()
+    this._isMounted = true;  
+  }
 
-  function getStudent() {
+columns = [
+    {field:'studentid', headerName:'Student ID', width:120},
+    {field:'firstname', headerName:'First Name', width:200},
+    {field:'lastname', headerName:'Last Name', width:200},
+    {field:'score1', headerName:'Score 1', width:100},
+    {field:'score2', headerName:'Score 2', width:100},
+    {field:'score3', headerName:'Score 3', width:100},
+    {field:'score4', headerName:'Score 4', width:100},
+    {field:'score5', headerName:'Score 5', width:100},
+    {field:'candash', headerName:'CanDash',width:100}
+  ]
+
+studentsNice = []
+
+getStudent() {
     fetch('http://localhost:3001')
       .then(response => {
         return response.text();
       })
       .then(data => {
-        setStudents(data);
-      });
+        if (this._isMounted) {this.setState({students:data})}
+        this.studentsNice = this.state.students.length !== 0 ? JSON.parse(this.state.students) : [] 
+        this.canDash(this.studentsNice)
+        this.props.parentCallback(this.studentsNice);
+      }); 
   }
 
-  function createStudent() {
+ createStudent() {
     let name = prompt('Enter student name');
     let email = prompt('Enter student email');
 
@@ -33,88 +61,56 @@ function StudentGet() {
       })
       .then(data => {
         alert(data);
-        getStudent();
+        this.getStudent();
       });
   }
 
-  function deleteStudent() {
-    let id = prompt('Enter student id');
-
-    fetch(`http://localhost:3001/students/${id}`, {
-      method: 'DELETE',
-    })
-      .then(response => {
-        return response.text();
+  deleteStudent(id) {
+    // eslint-disable-next-line no-restricted-globals
+    let del = confirm("Are you sure you want to delete?")
+    if (del) {
+      fetch(`http://localhost:3001/students/${id}`, {
+        method: 'DELETE',
       })
-      .then(data => {
-        alert(data);
-        getStudent();
-      });
-  }
-
-  function showStudents() {
-    return JSON.parse(students)
-  }
-
-  let studentsNice = showStudents()
-
-    
-  function makeTable() {
-    let JSX = studentsNice.map(function(f) { 
-      return (
-        <tr>
-          <td>{f["studentid"]}</td>
-          <td>{f["firstname"]}</td>
-          <td>{f["lastname"]}</td>
-          <td>{f["score1"]}</td>
-          <td>{f["score2"]}</td>
-          <td>{f["score3"]}</td>
-          <td>{f["score4"]}</td>
-          <td>{f["score5"]}</td>
-        </tr>   
-      )
-    });
-    return (
-      <tbody>
-        {JSX}
-      </tbody>
-    )
+        .then(response => {
+          return response.text();
+        })
+        .then(data => {
+          alert(data);
+          this.getStudent();
+        });
     }
+    
+  }
 
-
-
-
-
-  console.log(studentsNice)
-  return ( 
-         <table>
-           <thead>
-             <tr>
-               <th>Student ID</th>
-               <th>First Name</th>
-               <th>Last Name</th>
-               <th>Score 1</th>
-               <th>Score 2</th>
-               <th>Score 3</th>
-               <th>Score 4</th>
-               <th>Score 5</th>
-             </tr>
-           </thead>
-            {students ? makeTable() : <tbody><tr><td>Nothing to display</td></tr></tbody>}
-         </table>
-   
+  canDash(studentsNice) {
+    for(var i=0; i<studentsNice.length; i++) {
+      studentsNice[i].candash = 3
+    }
+  }
   
-    /*
-    <div>
-      {
-      students ? students : 'There is no student data available'
-      }
-      <br />
-      <button onClick={createStudent}>Add</button>
-      <br />
-      <button onClick={deleteStudent}>Delete</button>
-    </div>*/
+  render() {
+        return ( 
+         <div style={{ height:'1000px', width:'100%'}}>
+           <button onClick={this.deleteStudent}>Delete</button>
+           <button onClick={this.createStudent}>Add</button>
+           {this.studentsNice.length > 0 ? 
+           <DataGrid 
+           rows={this.studentsNice} 
+           columns={this.columns} 
+           autoHeight={true}
+           checkboxSelection={true}
+           onRowClick={(e) => this.handleCellClick(e, 1/* undefined: e.currentTarget.dataset.rowindex */)}
+           disableSelectionOnClick= {true}
+           />
+            : <p>No data found</p>}
+         </div>
   ); 
 }
 
+componentWillUnmount() {
+  this._isMounted = false;  
+}
+  
+}
 export default StudentGet;

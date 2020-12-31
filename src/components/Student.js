@@ -14,41 +14,30 @@ class Student extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id:'207254',
-            name:'Harry Potter',
-            grade:9,
-            period:2,
-            canDashScore:3
         };    
     }
+
+    student = this.props.students[this.props.studentid]
+    scores = this.props.scores
+    
 
     maxScores = {
         // maximum scores for each test
         score1:500,
-        score2:500,
-        score3:2000,
+        score2:10,
+        score3:1600,
         score4:35,
         score5:1
     }  
 
-    scores = {
-            // actual student scores
-            score1: 350,
-            score2: 340,
-            score3: 798,
-            score4: 28,
-            score5: 0
-
-    }
-
     data = [
         {
             data: {
-              score1: this.scores.score1 / this.maxScores.score1,
-              score2:this.scores.score2 / this.maxScores.score2,
-              score3: this.scores.score3 / this.maxScores.score3,
-              score4: this.scores.score4 / this.maxScores.score4,
-              score5: this.scores.score5 / this.maxScores.score5
+              score1: this.student["score1"] / this.maxScores.score1,
+              score2: this.student["score2"] / this.maxScores.score2,
+              score3: this.student["score3"] / this.maxScores.score3,
+              score4: this.student["score4"] / this.maxScores.score4,
+              score5: this.student["score5"] / this.maxScores.score5
             },
             meta: { color: 'blue' }
           }
@@ -78,10 +67,14 @@ class Student extends React.Component {
     render() {
         return (
             <div className="student">
+                <nav>
+                    <button name="db" onClick={(e) => this.props.clicklist(e,0,'db')}>Return to list</button>
+                </nav>
+                <br />
                 <Grid container spacing={3}>
                     <Grid item xs={4}>
                         <Paper className='paper'>
-                            <h2>{this.state.name}</h2> 
+                            <h2>{this.student["firstname"]} {this.student["lastname"] }</h2> 
                             
                             <RadarChart
                                 captions={this.captions}
@@ -90,10 +83,8 @@ class Student extends React.Component {
                                 options={this.options}
                             />
                             <p>
-                                Student ID: {this.state.id} <br />
-                                Grade:{this.state.grade} <br />
-                                Period: {this.state.period}<br />
-                                CanDash Score: {this.state.canDashScore}
+                                Student ID: {this.student["studentid"]} <br />
+                                CanDash Score: {this.student["candash"]}
                             </p>
                         </Paper>
                     </Grid>
@@ -101,11 +92,11 @@ class Student extends React.Component {
                         <Paper className='paper'>
                             <h3>Scores</h3>
                             <ul>
-                                <li><strong>{this.captions.score1}</strong>: {this.scores.score1}</li>
-                                <li><strong>{this.captions.score2}</strong>: {this.scores.score2}</li>
-                                <li><strong>{this.captions.score3}</strong>: {this.scores.score3}</li>
-                                <li><strong>{this.captions.score4}</strong>: {this.scores.score4}</li>
-                                <li><strong>{this.captions.score5}</strong>: {this.scores.score5}</li>
+                                <li><strong>{this.captions.score1}</strong>: {this.student["score1"]}</li>
+                                <li><strong>{this.captions.score2}</strong>: {this.student["score2"]}</li>
+                                <li><strong>{this.captions.score3}</strong>: {this.student["score3"]}</li>
+                                <li><strong>{this.captions.score4}</strong>: {this.student["score4"]}</li>
+                                <li><strong>{this.captions.score5}</strong>: {this.student["score5"]}</li>
                             </ul>
 
                             <h3>Can Do</h3>
