@@ -18,12 +18,12 @@ class App extends React.Component {
     this.getScores = this.getScores.bind(this);
   }
 
-  handleClick(e, i) {
+  handleClick(event) {
     let view = this.state.viewShow === 'db' ? 'student' : 'db'
     this.setState(() => {
       return {
         viewShow:view,
-        studentid:i
+        studentid:event.row !== undefined ? event.row["id"] - 1 : 0
       };
     });
   }
