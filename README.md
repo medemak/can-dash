@@ -1,4 +1,4 @@
-# can-dash
+# can-dash 
 This project is a teacher dashboard meant to focus on the skills that students of varying levels possess. 
 
 It will allow teachers to upload a spreadsheet of students and test scores, generating a dashboard based around that data. 
